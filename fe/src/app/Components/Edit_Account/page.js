@@ -5,7 +5,7 @@ export function Edit_Account(props) {
       onSubmit={props.formikEdit.handleSubmit}>
       <h1>To edit</h1>
       <hr className="w-[400px]"></hr>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 pt-3">
         <input
           onChange={props.formikEdit.handleChange("correctID")}
           value={props.formikEdit.values.correctID}

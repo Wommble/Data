@@ -28,7 +28,9 @@ export const Info = ({ user, index, deleteUserFunc, copylink }) => {
       password: password,
     });
     if (res.data.status == true) {
+      window.localStorage.setItem("uid", user.id);
       setsLoging(true);
+      console.log(user.id);
     } else {
       formik.setFieldError("password", "Incorrect password");
     }

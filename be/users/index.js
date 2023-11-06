@@ -1,16 +1,19 @@
 import fs from "fs";
 
-var getDatas = () => {
-  fs.readFile("./data/user.json", "utf-8", (readError, data) => {
-    if (readError) {
-      response.json({
-        status: "errors",
-      });
-    }
-    var DataOfUsers = JSON.parse(data);
-  });
-};
-
+// var getDatas = () => {
+//   fs.readFile("./data/user.json", "utf-8", (readError, data) => {
+//     if (readError) {
+//       response.json({
+//         status: "errors",
+//       });
+//     }
+//     var DataOfUsers = JSON.parse(data);
+//   });
+// };
+// export const allowuser = (req, res, next) => {
+//   console.log("worked");
+//   next();
+// };
 export const getUser = (request, response) => {
   fs.readFile("./data/user.json", "utf-8", (readError, data) => {
     if (readError) {
@@ -20,7 +23,7 @@ export const getUser = (request, response) => {
     }
     let datas = JSON.parse(data);
     response.json({ data: datas });
-    console.log(getDatas);
+    // console.log(getDatas);
   });
 };
 export const createUser = (request, response) => {
@@ -89,6 +92,7 @@ export const deleteUser = (request, response) => {
 export const editUser = (request, response) => {
   const body = [request.body];
   var { id } = request.params;
+  console;
   fs.readFile("./data/user.json", "utf-8", (readError, data) => {
     let savedData = JSON.parse(data);
     if (readError) {
@@ -123,27 +127,5 @@ export const editUser = (request, response) => {
         });
       }
     });
-  });
-};
-
-export const checkAccount = (req, res) => {
-  const body = req.body;
-  fs.readFile("./data/user.json", (readError, data) => {
-    let savedData = JSON.parse(data);
-    if (readError) {
-      res.json({
-        status: "errors",
-      });
-    }
-
-    let correctPassword = false;
-    savedData.forEach((cur) => {
-      if (body.username == cur.username && body.password == cur.password) {
-        correctPassword = true;
-      }
-    });
-
-    if (correctPassword) res.json({ status: true });
-    else res.json({ status: false });
   });
 };
